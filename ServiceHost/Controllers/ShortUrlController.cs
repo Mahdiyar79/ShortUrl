@@ -25,7 +25,7 @@ namespace ServiceHost.Controllers
             };
             var url = _shortUrlApplication.GetOrginalUrl(orginalUrl);
             if (url.IsSuccedded)
-                return new ObjectResult(url.Massage);
+                return Redirect( url.Massage);
             return new ObjectResult(HttpStatusCode.NotFound + "" + url.Massage);
         }
 
