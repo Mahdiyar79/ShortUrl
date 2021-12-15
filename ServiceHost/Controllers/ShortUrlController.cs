@@ -17,7 +17,7 @@ namespace ServiceHost.Controllers
         }
 
         [HttpGet]
-        public IActionResult Get(string shorterurl)
+        public ActionResult Get(string shorterurl)
         {
             ShowOrginalUrl orginalUrl = new ShowOrginalUrl()
             {
@@ -25,9 +25,10 @@ namespace ServiceHost.Controllers
             };
             var url = _shortUrlApplication.GetOrginalUrl(orginalUrl);
             if (url.IsSuccedded)
-                return RedirectToRoute(url.Massage);
+                return new ObjectResult(url.Massage);
             return new ObjectResult(HttpStatusCode.NotFound + "" + url.Massage);
         }
+
         [HttpPost]
         public IActionResult Create(string orginalurl)
         {
